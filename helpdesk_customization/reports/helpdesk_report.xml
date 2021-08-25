@@ -1,0 +1,399 @@
+<odoo>
+
+    <report
+            id="action_report_ticket_helpdesk"
+            model="helpdesk.ticket"
+            string="Checklist Report"
+            report_type="qweb-pdf"
+            name="helpdesk_customization.report_helpdesk_document_inh"
+            file="helpdesk_customization.report_helpdesk_document_inh"/>
+
+    <template id="report_helpdesk_document_inh">
+       <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <t t-if="o.pole_lines">
+                            <h2>
+                                Pole and Pole Foundation
+                            </h2>
+                            <table class="table table-sm o_main_table">
+                                <thead class="thead-light">
+                                    <tr >
+                                        <th name="th_sm_si" class="text-center"><strong>Site Inspection</strong></th>
+                                        <th name="th_sm_o" class="text-center"><strong>Ok</strong></th>
+                                        <th name="th_sm_no" class="text-center"><strong>Not Ok</strong></th>
+                                        <th name="th_sm_re" class="text-center"><strong>Remarks</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr t-foreach="o.pole_lines" t-as="p_line">
+                                        <td for="th_sm_si" class="text-center">
+                                            <span t-field="p_line.site_ins"/>
+                                        </td>
+                                        <td for="th_sm_o" class="text-center">
+<!--                                            <span t-field="p_line.is_ok"/>-->
+                                            <t t-if="p_line.is_ok">
+                                                <span>Yes</span>
+                                            </t>
+                                        </td>
+                                        <td for="th_sm_no" class="text-center">
+<!--                                            <span t-field="p_line.is_not_ok"/>-->
+                                            <t t-if="p_line.is_not_ok">
+                                                <span>Yes</span>
+                                            </t>
+                                        </td>
+                                        <td for="th_sm_re" class="text-center">
+                                            <span t-field="p_line.remarks"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div class="container row" style="margin-top:1em;margin-left:1em;float:right; font-size:15px;">
+                                <div class="col-12">
+                                    <strong><span >Name:</span> </strong><span t-field="o.pole_name"/><br/>
+                                    <strong><span>Signature:</span> </strong><span t-field="o.pole_sig"/>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="o.outdoor_lines">
+                            <p style="page-break-after: always;"/><br/><br/>
+                            <h2>
+                                Outdoor Closures
+                            </h2>
+                            <table class="table table-sm o_main_table">
+                                <thead class="thead-light">
+                                    <tr >
+                                        <th name="th_sm_si" class="text-center"><strong>Site Inspection</strong></th>
+                                        <th name="th_sm_o" class="text-center"><strong>Ok</strong></th>
+                                        <th name="th_sm_no" class="text-center"><strong>Not Ok</strong></th>
+                                        <th name="th_sm_re" class="text-center"><strong>Remarks</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr t-foreach="o.outdoor_lines" t-as="p_line">
+                                        <td for="th_sm_si" class="text-center">
+                                            <span t-field="p_line.site_ins"/>
+                                        </td>
+                                        <td for="th_sm_o" class="text-center">
+                                            <span t-field="p_line.is_ok"/>
+                                        </td>
+                                        <td for="th_sm_no" class="text-center">
+                                            <span t-field="p_line.is_not_ok"/>
+                                        </td>
+                                        <td for="th_sm_re" class="text-center">
+                                            <span t-field="p_line.remarks"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div class="container row" style="margin-top:1em;margin-left:1em;float:right; font-size:15px;">
+                                <div class="col-12">
+                                    <strong><span >Name:</span> </strong><span t-field="o.pole_name"/><br/>
+                                    <strong><span>Signature:</span> </strong><span t-field="o.pole_sig"/>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="o.battery_lines">
+                            <p style="page-break-after: always;"/><br/><br/>
+                            <h2>
+                                Battery Closures
+                            </h2>
+                            <table class="table table-sm o_main_table">
+                                <thead class="thead-light">
+                                    <tr >
+                                        <th name="th_sm_si" class="text-center"><strong>Site Inspection</strong></th>
+                                        <th name="th_sm_o" class="text-center"><strong>Ok</strong></th>
+                                        <th name="th_sm_no" class="text-center"><strong>Not Ok</strong></th>
+                                        <th name="th_sm_re" class="text-center"><strong>Remarks</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr t-foreach="o.battery_lines" t-as="p_line">
+                                        <td for="th_sm_si" class="text-center">
+                                            <span t-field="p_line.site_ins"/>
+                                        </td>
+                                        <td for="th_sm_o" class="text-center">
+                                            <span t-field="p_line.is_ok"/>
+                                        </td>
+                                        <td for="th_sm_no" class="text-center">
+                                            <span t-field="p_line.is_not_ok"/>
+                                        </td>
+                                        <td for="th_sm_re" class="text-center">
+                                            <span t-field="p_line.remarks"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div class="container row" style="margin-top:1em;margin-left:1em;float:right; font-size:15px;">
+                                <div class="col-12">
+                                    <strong><span >Name:</span> </strong><span t-field="o.pole_name"/><br/>
+                                    <strong><span>Signature:</span> </strong><span t-field="o.pole_sig"/>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="o.civil_lines">
+                            <p style="page-break-after: always;"/><br/><br/>
+                            <h2>
+                                Civil and Fiber Network
+                            </h2>
+                            <table class="table table-sm o_main_table">
+                                <thead class="thead-light">
+                                    <tr >
+                                        <th name="th_sm_si" class="text-center"><strong>Site Inspection</strong></th>
+                                        <th name="th_sm_o" class="text-center"><strong>Ok</strong></th>
+                                        <th name="th_sm_no" class="text-center"><strong>Not Ok</strong></th>
+                                        <th name="th_sm_re" class="text-center"><strong>Remarks</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr t-foreach="o.civil_lines" t-as="p_line">
+                                        <td for="th_sm_si" class="text-center">
+                                            <span t-field="p_line.site_ins"/>
+                                        </td>
+                                        <td for="th_sm_o" class="text-center">
+                                            <span t-field="p_line.is_ok"/>
+                                        </td>
+                                        <td for="th_sm_no" class="text-center">
+                                            <span t-field="p_line.is_not_ok"/>
+                                        </td>
+                                        <td for="th_sm_re" class="text-center">
+                                            <span t-field="p_line.remarks"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div class="container row" style="margin-top:1em;margin-left:1em;float:right; font-size:15px;">
+                                <div class="col-12">
+                                    <strong><span >Name:</span> </strong><span t-field="o.pole_name"/><br/>
+                                    <strong><span>Signature:</span> </strong><span t-field="o.pole_sig"/>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="o.fibre_lines">
+                            <p style="page-break-after: always;"/><br/><br/>
+                            <h2>
+                                Optical Testing: Fiber Optical Length Measurement
+                            </h2>
+                            <table class="table table-sm o_main_table">
+                                <thead class="thead-light">
+                                    <tr >
+                                        <th name="th_sm_si" class="text-center"><strong>Site Inspection</strong></th>
+                                        <th name="th_sm_o" class="text-center"><strong>Ok</strong></th>
+                                        <th name="th_sm_no" class="text-center"><strong>Not Ok</strong></th>
+                                        <th name="th_sm_re" class="text-center"><strong>Remarks</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr t-foreach="o.fibre_lines" t-as="p_line">
+                                        <td for="th_sm_si" class="text-center">
+                                            <span t-field="p_line.site_ins"/>
+                                        </td>
+                                        <td for="th_sm_o" class="text-center">
+                                            <span t-field="p_line.is_ok"/>
+                                        </td>
+                                        <td for="th_sm_no" class="text-center">
+                                            <span t-field="p_line.is_not_ok"/>
+                                        </td>
+                                        <td for="th_sm_re" class="text-center">
+                                            <span t-field="p_line.remarks"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div class="container row" style="margin-top:1em;margin-left:1em;float:right; font-size:15px;">
+                                <div class="col-12">
+                                    <strong><span >Name:</span> </strong><span t-field="o.pole_name"/><br/>
+                                    <strong><span>Signature:</span> </strong><span t-field="o.pole_sig"/>
+                                </div>
+                            </div>
+                        </t>
+
+                        <t t-if="o.attenuation_lines">
+                            <p style="page-break-after: always;"/><br/><br/>
+                            <h2>
+                                Optical Testing: Attenuation Test
+                            </h2>
+                            <table class="table table-sm o_main_table">
+                                <thead class="thead-light">
+                                    <tr >
+                                        <th name="th_sm_si" class="text-center"><strong>Site Inspection</strong></th>
+                                        <th name="th_sm_o" class="text-center"><strong>Ok</strong></th>
+                                        <th name="th_sm_no" class="text-center"><strong>Not Ok</strong></th>
+                                        <th name="th_sm_re" class="text-center"><strong>Remarks</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr t-foreach="o.attenuation_lines" t-as="p_line">
+                                        <td for="th_sm_si" class="text-center">
+                                            <span t-field="p_line.site_ins"/>
+                                        </td>
+                                        <td for="th_sm_o" class="text-center">
+                                            <span t-field="p_line.is_ok"/>
+                                        </td>
+                                        <td for="th_sm_no" class="text-center">
+                                            <span t-field="p_line.is_not_ok"/>
+                                        </td>
+                                        <td for="th_sm_re" class="text-center">
+                                            <span t-field="p_line.remarks"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div class="container row" style="margin-top:1em;margin-left:1em;float:right; font-size:15px;">
+                                <div class="col-12">
+                                    <strong><span >Name:</span> </strong><span t-field="o.pole_name"/><br/>
+                                    <strong><span>Signature:</span> </strong><span t-field="o.pole_sig"/>
+                                </div>
+                            </div>
+                        </t>
+
+                        <t t-if="o.camera_lines">
+                            <p style="page-break-after: always;"/><br/><br/>
+                            <h2>
+                                Cameras
+                            </h2>
+                            <table class="table table-sm o_main_table">
+                                <thead class="thead-light">
+                                    <tr >
+                                        <th name="th_sm_si" class="text-center"><strong>Site Inspection</strong></th>
+                                        <th name="th_sm_o" class="text-center"><strong>Ok</strong></th>
+                                        <th name="th_sm_no" class="text-center"><strong>Not Ok</strong></th>
+                                        <th name="th_sm_re" class="text-center"><strong>Remarks</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr t-foreach="o.camera_lines" t-as="p_line">
+                                        <td for="th_sm_si" class="text-center">
+                                            <span t-field="p_line.site_ins"/>
+                                        </td>
+                                        <td for="th_sm_o" class="text-center">
+                                            <span t-field="p_line.is_ok"/>
+                                        </td>
+                                        <td for="th_sm_no" class="text-center">
+                                            <span t-field="p_line.is_not_ok"/>
+                                        </td>
+                                        <td for="th_sm_re" class="text-center">
+                                            <span t-field="p_line.remarks"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div class="container row" style="margin-top:1em;margin-left:1em;float:right; font-size:15px;">
+                                <div class="col-12">
+                                    <strong><span >Name:</span> </strong><span t-field="o.pole_name"/><br/>
+                                    <strong><span>Signature:</span> </strong><span t-field="o.pole_sig"/>
+                                </div>
+                            </div>
+                        </t>
+
+                        <t t-if="o.site_lines">
+                            <p style="page-break-after: always;"/><br/><br/>
+                            <h2>
+                                Site Power
+                            </h2>
+                            <table class="table table-sm o_main_table">
+                                <thead class="thead-light">
+                                    <tr >
+                                        <th name="th_sm_si" class="text-center"><strong>Site Inspection</strong></th>
+                                        <th name="th_sm_o" class="text-center"><strong>Ok</strong></th>
+                                        <th name="th_sm_no" class="text-center"><strong>Not Ok</strong></th>
+                                        <th name="th_sm_re" class="text-center"><strong>Remarks</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr t-foreach="o.site_lines" t-as="p_line">
+                                        <td for="th_sm_si" class="text-center">
+                                            <span t-field="p_line.site_ins"/>
+                                        </td>
+                                        <td for="th_sm_o" class="text-center">
+                                            <span t-field="p_line.is_ok"/>
+                                        </td>
+                                        <td for="th_sm_no" class="text-center">
+                                            <span t-field="p_line.is_not_ok"/>
+                                        </td>
+                                        <td for="th_sm_re" class="text-center">
+                                            <span t-field="p_line.remarks"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div class="container row" style="margin-top:1em;margin-left:1em;float:right; font-size:15px;">
+                                <div class="col-12">
+                                    <strong><span >Name:</span> </strong><span t-field="o.pole_name"/><br/>
+                                    <strong><span>Signature:</span> </strong><span t-field="o.pole_sig"/>
+                                </div>
+                            </div>
+                        </t>
+
+                        <t t-if="o.wireless_lines">
+                            <p style="page-break-after: always;"/><br/><br/>
+                            <h2>
+                                Wireless System
+                            </h2>
+                            <table class="table table-sm o_main_table">
+                                <thead class="thead-light">
+                                    <tr >
+                                        <th name="th_sm_si" class="text-center"><strong>Site Inspection</strong></th>
+                                        <th name="th_sm_o" class="text-center"><strong>Ok</strong></th>
+                                        <th name="th_sm_no" class="text-center"><strong>Not Ok</strong></th>
+                                        <th name="th_sm_re" class="text-center"><strong>Remarks</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr t-foreach="o.wireless_lines" t-as="p_line">
+                                        <td for="th_sm_si" class="text-center">
+                                            <span t-field="p_line.site_ins"/>
+                                        </td>
+                                        <td for="th_sm_o" class="text-center">
+                                            <span t-field="p_line.is_ok"/>
+                                        </td>
+                                        <td for="th_sm_no" class="text-center">
+                                            <span t-field="p_line.is_not_ok"/>
+                                        </td>
+                                        <td for="th_sm_re" class="text-center">
+                                            <span t-field="p_line.remarks"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div class="container row" style="margin-top:1em;margin-left:1em;float:right; font-size:15px;">
+                                <div class="col-12">
+                                    <strong><span >Name:</span> </strong><span t-field="o.pole_name"/><br/>
+                                    <strong><span>Signature:</span> </strong><span t-field="o.pole_sig"/>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
